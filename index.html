@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protótipo – Plataforma de Idiomas (baixa fidelidade)</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header><b>🌐 Plataforma de Idiomas · Protótipo</b>
+<label style="margin:0">Perfil:</label>
+<select id="perfil" style="width:auto"><option value="a">Aluno</option><option value="p">Professor</option><option value="x">Administrador</option></select>
+<button id="sair">Sair</button></header>
+<div id="app"><nav></nav><main>
+
+<!-- HU01 -->
+<section class="tela" id="login" data-roles="apx" data-titulo="Login">
+<h2>Acesso ao sistema</h2><span class="tag">HU01</span><span class="tag">RN01 · RNF03</span>
+<div class="tabs"><button class="on" data-t="login">Login</button><button data-t="rec">Esqueci a senha</button></div>
+<div class="caixa" id="f-login"><label>E-mail</label><input value="usuario@escola.com"><label>Senha</label><input type="password" value="123456">
+<p class="nota">Admin: MFA solicitado após a senha (RNF03). Usuário inativo é bloqueado (HU02). Sessão expira automaticamente.</p>
+<button class="p" id="entrar">Entrar</button><span class="nota">← usa o perfil selecionado no topo</span></div>
+<div class="caixa" id="f-rec" hidden><label>E-mail cadastrado</label><input><button class="p" id="enviar-rec">Enviar link de redefinição</button></div>
+</section>
+
+<!-- HU02 -->
+<section class="tela" id="usuarios" data-roles="x" data-titulo="Usuários">
+<h2>Gestão de Usuários</h2><span class="tag">HU02</span><span class="tag">RF02 · RN01 · RN09</span>
+<div class="grid"><div><label>Buscar</label><input placeholder="Nome ou e-mail"></div><div><label>Perfil</label><select><option>Todos</option><option>Aluno</option><option>Professor</option><option>Administrador</option></select></div></div>
+<button class="p" data-msg="Abre formulário de novo usuário">+ Novo usuário</button>
+<table><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Ações</th></tr>
+<tr><td>Ana Souza</td><td>ana@mail.com</td><td>Aluno</td><td class="st">Ativo</td><td><button data-msg="Editar">Editar</button><button class="tg">Ativar/Inativar</button></td></tr>
+<tr><td>Carlos Lima</td><td>carlos@mail.com</td><td>Professor</td><td class="st">Ativo</td><td><button data-msg="Editar">Editar</button><button class="tg">Ativar/Inativar</button></td></tr>
+<tr><td>Marta Reis</td><td>marta@mail.com</td><td>Administrador</td><td class="st">Inativo</td><td><button data-msg="Editar">Editar</button><button class="tg">Ativar/Inativar</button></td></tr></table>
+<div class="caixa"><b>Cadastro/Edição</b><div class="grid"><div><label>Nome</label><input></div><div><label>E-mail</label><input></div><div><label>Perfil</label><select><option>Aluno</option><option>Professor</option><option>Administrador</option></select></div><div><label>Status</label><select><option>Ativo</option><option>Inativo</option></select></div></div><button class="p" data-msg="Usuário salvo">Salvar</button></div>
+</section>
+
+<!-- HU03 -->
+<section class="tela" id="cursos" data-roles="x" data-titulo="Idiomas e Cursos">
+<h2>Idiomas, Níveis, Módulos e Cursos</h2><span class="tag">HU03</span><span class="tag">RF03 · RN13</span>
+<table><tr><th>Idioma</th><th>Nível</th><th>Módulo</th><th>Curso</th><th>Status</th><th>Ações</th></tr>
+<tr><td>Inglês</td><td>A1</td><td>Módulo 1</td><td>English Basics</td><td class="st">Ativo</td><td><button data-msg="Editar">Editar</button><button class="tg">Inativar</button></td></tr>
+<tr><td>Espanhol</td><td>B1</td><td>Módulo 2</td><td>Español Intermedio</td><td class="st">Ativo</td><td><button data-msg="Editar">Editar</button><button class="tg">Inativar</button></td></tr></table>
+<p class="nota">Curso inativo: não aceita novas matrículas, histórico preservado.</p>
+<div class="caixa"><div class="grid"><div><label>Idioma</label><select><option>Inglês</option></select></div><div><label>Nível</label><select><option>A1</option></select></div><div><label>Módulo</label><input></div><div><label>Curso</label><input></div></div><button class="p" data-msg="Salvo">Salvar</button></div>
+</section>
+
+<!-- HU04 -->
+<section class="tela" id="turmas" data-roles="x" data-titulo="Turmas">
+<h2>Gestão de Turmas</h2><span class="tag">HU04</span><span class="tag">RF04 · RN03 · RN13</span>
+<table><tr><th>Turma</th><th>Curso / Nível</th><th>Professor</th><th>Horário</th><th>Ações</th></tr>
+<tr><td>EN-A1-01</td><td>English Basics / A1</td><td>Carlos Lima</td><td>Seg/Qua 19h</td><td><button data-msg="Editar">Editar</button><button data-msg="Professor removido">Remover prof.</button></td></tr></table>
+<div class="caixa"><b>Nova turma</b><div class="grid"><div><label>Curso</label><select><option>English Basics</option></select></div><div><label>Nível</label><select><option>A1</option></select></div><div><label>Professor responsável</label><select><option>Carlos Lima</option></select></div><div><label>Horários</label><input placeholder="Seg/Qua 19h"></div></div><button class="p" data-msg="Turma salva">Salvar</button></div>
+</section>
+
+<!-- HU05 -->
+<section class="tela" id="matriculas" data-roles="x" data-titulo="Matrículas">
+<h2>Matrículas</h2><span class="tag">HU05</span><span class="tag">RF05 · RN02</span>
+<div class="caixa"><div class="grid"><div><label>Aluno</label><select><option>Ana Souza</option></select></div><div><label>Turma</label><select><option>EN-A1-01</option></select></div></div><button class="p" data-msg="Aluno matriculado">Matricular</button></div>
+<table><tr><th>Aluno</th><th>Turma</th><th>Status</th><th>Ações</th></tr>
+<tr><td>Ana Souza</td><td>EN-A1-01</td><td>Ativa</td><td><button data-msg="Matrícula trancada">Trancar</button><button data-msg="Matrícula cancelada">Cancelar</button></td></tr>
+<tr><td>Bruno Alves</td><td>EN-A1-01</td><td>Trancada</td><td><button data-msg="Matrícula reativada">Reativar</button></td></tr>
+<tr><td>Joana Dias</td><td>ES-B1-02</td><td>Cancelada</td><td><button data-msg="Matrícula reativada">Reativar</button></td></tr></table>
+</section>
+
+<!-- HU06 -->
+<section class="tela" id="aulas-prof" data-roles="p" data-titulo="Gerenciar Aulas">
+<h2>Gestão de Aulas</h2><span class="tag">HU06</span><span class="tag">RF06 · RN03 · RN04</span>
+<label>Turma</label><select><option>EN-A1-01</option></select>
+<table><tr><th>#</th><th>Aula</th><th>Conteúdo</th><th>Status</th><th>Ações</th></tr>
+<tr><td>1</td><td>Greetings</td><td>Vídeo, PDF</td><td class="st">Publicada</td><td><button data-msg="Editar">Editar</button><button data-msg="↑↓ Reordenado">↑↓</button></td></tr>
+<tr><td>2</td><td>Numbers</td><td>Texto, Link</td><td class="st">Rascunho</td><td><button data-msg="Editar">Editar</button><button data-msg="Publicada">Publicar</button></td></tr></table>
+<div class="caixa"><b>Nova aula</b><label>Título</label><input><label>Vídeo (URL)</label><input><label>Texto</label><textarea rows="3"></textarea><label>Arquivo</label><input type="file"><label>Link externo</label><input><button data-msg="Rascunho salvo">Salvar rascunho</button><button class="p" data-msg="Aula publicada">Publicar</button></div>
+</section>
+
+<!-- HU07 -->
+<section class="tela" id="aula-aluno" data-roles="a" data-titulo="Minhas Aulas">
+<h2>Aula 1 – Greetings</h2><span class="tag">HU07</span><span class="tag">RF07 · RN02 · RN04 · RNF08</span>
+<p class="nota">Turma EN-A1-01 (matrícula ativa) · Apenas aulas publicadas</p>
+<div class="ph">▶ Player de vídeo (qualidade adaptativa, retoma de onde parou)</div>
+<div class="caixa">Texto da aula…<br>📎 Material.pdf · 🔗 Link externo</div>
+<p>Status: <b id="st-aula" class="no">Não concluída</b></p><button class="p" id="concluir">Marcar como concluída</button>
+<table><tr><th>Aula</th><th>Status</th></tr><tr><td>1 Greetings</td><td>—</td></tr><tr><td>2 Numbers</td><td class="ok">Concluída ✔</td></tr></table>
+</section>
+
+<!-- HU08 -->
+<section class="tela" id="atividades-prof" data-roles="p" data-titulo="Gerenciar Atividades">
+<h2>Gestão de Atividades</h2><span class="tag">HU08</span><span class="tag">RF08 · RN05</span>
+<div class="caixa"><label>Título / Enunciado</label><textarea rows="3"></textarea><div class="grid"><div><label>Prazo</label><input type="datetime-local"></div><div><label>Vincular a</label><select><option>Aula 1 – Greetings</option><option>Turma EN-A1-01</option></select></div><div><label>Após o prazo</label><select><option>Bloquear envio</option><option>Penalizar nota</option></select></div></div><label>Anexos</label><input type="file"><label>Critérios de correção</label><textarea rows="2"></textarea><button class="p" data-msg="Atividade publicada">Publicar</button><button data-msg="Salva como rascunho">Rascunho</button></div>
+<table><tr><th>Atividade</th><th>Prazo</th><th>Entregas</th><th></th></tr><tr><td>Atividade 1</td><td>30/11</td><td>12/20</td><td><a class="btn" href="#atividade-aluno">Ver entregas</a></td></tr></table>
+</section>
+
+<!-- HU09 -->
+<section class="tela" id="atividade-aluno" data-roles="ap" data-titulo="Entrega de Atividades">
+<h2>Atividade 1 – Greetings</h2><span class="tag">HU09</span><span class="tag">RF09 · RN05 · RN08</span>
+<div class="caixa"><b>Visão do Aluno</b><p>Enunciado… Prazo: <b>30/11 23:59</b></p><label>Resposta</label><textarea rows="3"></textarea><label>Anexo</label><input type="file"><button class="p" data-msg="Atividade enviada">Enviar</button>
+<p><b>Resultado:</b> 8,5 · <i>Feedback: "Bom trabalho, atenção à pronúncia."</i></p></div>
+<div class="caixa"><b>Visão do Professor – Correção</b><table><tr><th>Aluno</th><th>Entrega</th><th>Nota</th><th>Feedback</th><th></th></tr>
+<tr><td>Ana Souza</td><td>No prazo</td><td><input value="8,5"></td><td><input></td><td><button data-msg="Correção salva">Salvar</button></td></tr>
+<tr><td>Bruno Alves</td><td>Atrasada</td><td><input></td><td><input></td><td><button data-msg="Correção salva">Salvar</button></td></tr></table></div>
+</section>
+
+<!-- HU10 -->
+<section class="tela" id="avaliacoes-prof" data-roles="p" data-titulo="Gerenciar Avaliações">
+<h2>Configurar Avaliação</h2><span class="tag">HU10</span><span class="tag">RF10 · RN06 · RN12</span>
+<div class="caixa"><div class="grid"><div><label>Título</label><input></div><div><label>Tentativas</label><input type="number" value="2"></div><div><label>Peso</label><input value="30%"></div><div><label>Nota mínima</label><input value="6,0"></div><div><label>Prazo</label><input type="datetime-local"></div><div><label>Liberar gabarito</label><select><option>Após prazo</option><option>Imediato</option></select></div></div></div>
+<div class="caixa"><b>Questões</b><table><tr><th>#</th><th>Tipo</th><th>Enunciado</th><th>Correção</th></tr><tr><td>1</td><td>Objetiva</td><td>Choose the correct…</td><td>Automática (B)</td></tr><tr><td>2</td><td>Discursiva</td><td>Write about…</td><td>Manual / critérios</td></tr></table><button data-msg="Nova questão objetiva">+ Objetiva</button><button data-msg="Nova questão discursiva">+ Discursiva</button></div>
+<button class="p" data-msg="Avaliação publicada">Publicar</button>
+<p class="nota">Avaliação com respostas/notas não pode ser excluída: apenas arquivada (RN12). <button data-msg="Avaliação arquivada">Arquivar</button></p>
+</section>
+
+<!-- HU11 -->
+<section class="tela" id="avaliacao-aluno" data-roles="a" data-titulo="Realizar Avaliação">
+<h2>Avaliação 1 – Unit 1</h2><span class="tag">HU11</span><span class="tag">RF11 · RN05 · RN06</span>
+<p class="nota">Tentativa 1 de 2 · Prazo: 05/12</p>
+<div class="caixa"><b>1) Choose the correct option</b><br><label><input type="radio" name="q" style="width:auto"> A</label><label><input type="radio" name="q" style="width:auto"> B</label><label><input type="radio" name="q" style="width:auto"> C</label></div>
+<div class="caixa"><b>2) Write about your day</b><textarea rows="4"></textarea></div>
+<button class="p" data-msg="Respostas registradas">Enviar avaliação</button>
+<div class="caixa"><b>Resultado</b><p>Objetivas: 1/1 (automática) · Discursiva: aguardando correção · Gabarito: liberado após o prazo</p></div>
+</section>
+
+<!-- HU12 -->
+<section class="tela" id="notas" data-roles="apx" data-titulo="Notas / Boletim">
+<h2>Notas e Boletim</h2><span class="tag">HU12</span><span class="tag">RF12 · RN08 · RN09</span>
+<label>Turma</label><select><option>EN-A1-01</option></select>
+<div class="caixa"><b>Professor / Admin – boletim da turma</b><table><tr><th>Aluno</th><th>Ativ. 1</th><th>Aval. 1</th><th>Média</th></tr><tr><td>Ana Souza</td><td><input value="8,5"></td><td><input value="7,0"></td><td>7,8</td></tr><tr><td>Bruno Alves</td><td><input value="6,0"></td><td><input></td><td>—</td></tr></table><button class="p" data-msg="Notas salvas">Salvar notas</button></div>
+<div class="caixa"><b>Aluno – minhas notas (somente as minhas)</b><table><tr><th>Item</th><th>Nota</th><th>Feedback</th></tr><tr><td>Atividade 1</td><td>8,5</td><td>Bom trabalho</td></tr><tr><td>Avaliação 1</td><td>7,0</td><td>—</td></tr></table></div>
+</section>
+
+<!-- HU13 -->
+<section class="tela" id="progresso" data-roles="ap" data-titulo="Progresso">
+<h2>Meu Progresso</h2><span class="tag">HU13</span><span class="tag">RF13 · RN07</span>
+<p>Aulas concluídas: 6 de 10 (60%)</p><div class="bar"><i style="width:60%"></i></div>
+<div class="grid"><div class="caixa"><b>Atividades pendentes</b><br>Atividade 2 – prazo 07/12</div><div class="caixa"><b>Avaliações realizadas</b><br>Avaliação 1 – 7,0</div><div class="caixa"><b>Resultados</b><br>Média atual: 7,8</div></div>
+<p class="nota">Professor: mesmo painel, com seletor de aluno das suas turmas.</p>
+</section>
+
+<!-- HU14 -->
+<section class="tela" id="relatorios" data-roles="px" data-titulo="Relatórios">
+<h2>Relatórios Acadêmicos</h2><span class="tag">HU14</span><span class="tag">RF14 · RN03 · RN09</span>
+<div class="caixa"><div class="grid"><div><label>Tipo</label><select><option>Notas</option><option>Frequência</option><option>Conclusão</option><option>Alunos</option><option>Turmas</option></select></div><div><label>Turma</label><select><option>Todas (admin) / minhas (prof.)</option></select></div><div><label>Período</label><input type="month"></div></div><button class="p" id="gerar">Gerar relatório</button></div>
+<div id="rel-out" hidden><table><tr><th>Aluno</th><th>Média</th><th>Frequência</th><th>Conclusão</th></tr><tr><td>Ana Souza</td><td>7,8</td><td>92%</td><td>60%</td></tr><tr><td>Bruno Alves</td><td>6,0</td><td>70%</td><td>40%</td></tr></table><button data-msg="Exportar (simulação)">Exportar</button></div>
+</section>
+
+<!-- HU15 -->
+<section class="tela" id="notificacoes" data-roles="apx" data-titulo="Notificações">
+<h2>Notificações</h2><span class="tag">HU15</span><span class="tag">RF15 · RN11 · RNF13</span>
+<table><tr><th>Data</th><th>Notificação</th><th>Origem</th></tr><tr><td>22/11 10:00</td><td>Nova aula publicada: Numbers</td><td>Aula</td></tr><tr><td>21/11 08:00</td><td>Prazo da Atividade 1 em 2 dias</td><td>Prazo</td></tr><tr><td>20/11 15:30</td><td>Nota lançada: Avaliação 1</td><td>Nota</td></tr></table>
+<p class="nota">Também enviadas por e-mail e push (RNF13), conforme vínculos com as turmas.</p>
+</section>
+
+<!-- HU16 -->
+<section class="tela" id="avisos" data-roles="apx" data-titulo="Mural de Avisos">
+<h2>Mural de Avisos</h2><span class="tag">HU16</span><span class="tag">RF16 · RN04 · RN09</span>
+<div class="caixa"><b>Aluno – avisos das minhas turmas</b><br>📌 Aula extra sábado 10h (EN-A1-01) – 20/11</div>
+<div class="caixa"><b>Professor / Admin – novo aviso</b><label>Título</label><input><label>Mensagem</label><textarea rows="3"></textarea><div class="grid"><div><label>Destinatários</label><select><option>Turma EN-A1-01</option><option>Todos os alunos</option><option>Todos os professores</option></select></div></div><button class="p" data-msg="Aviso publicado">Publicar</button><button data-msg="Aviso editado">Editar existente</button></div>
+</section>
+
+<!-- HU17 -->
+<section class="tela" id="certificados" data-roles="a" data-titulo="Certificados">
+<h2>Meus Certificados</h2><span class="tag">HU17</span><span class="tag">RF17 · RN10</span>
+<table><tr><th>Curso</th><th>Frequência (mín. 75%)</th><th>Atividades</th><th>Média (mín. 6,0)</th><th>Situação</th></tr>
+<tr><td>English Basics A1</td><td class="ok">92% ✔</td><td class="ok">Concluídas ✔</td><td class="ok">7,8 ✔</td><td><button class="p" data-msg="Gerando certificado.pdf (simulação)">Baixar PDF</button></td></tr>
+<tr><td>Español B1</td><td class="no">60% ✘</td><td class="no">Pendentes ✘</td><td class="no">5,0 ✘</td><td class="no">Emissão bloqueada</td></tr></table>
+<div class="ph">Pré-visualização do certificado: nome do aluno, curso/nível, data</div>
+</section>
+
+<!-- HU18 -->
+<section class="tela" id="auditoria" data-roles="x" data-titulo="Auditoria">
+<h2>Auditoria</h2><span class="tag">HU18</span><span class="tag">RF18 · RNF05</span>
+<div class="caixa"><div class="grid"><div><label>Usuário</label><input></div><div><label>Período</label><input type="date"></div><div><label>Tipo de ação</label><select><option>Todas</option><option>Login</option><option>Alteração de nota</option><option>Exclusão</option></select></div></div><button class="p" id="buscar-log">Pesquisar</button></div>
+<table><tr><th>Data/Hora</th><th>Usuário</th><th>Evento</th></tr><tr><td>22/11 09:12</td><td>carlos@mail.com</td><td>Alteração de nota (Ana – Aval. 1)</td></tr><tr><td>22/11 08:50</td><td>marta@mail.com</td><td>Login</td></tr></table>
+<p class="nota">Acesso restrito a administradores. Logs mantidos por ≥ 6 meses.</p>
+</section>
+
+<!-- HU19 -->
+<section class="tela" id="frequencia" data-roles="apx" data-titulo="Frequência">
+<h2>Frequência</h2><span class="tag">HU19</span><span class="tag">RF19 · RN03 · RN10</span>
+<div class="caixa"><b>Professor / Admin – chamada</b><div class="grid"><div><label>Turma</label><select><option>EN-A1-01</option></select></div><div><label>Data da aula</label><input type="date"></div></div>
+<table><tr><th>Aluno</th><th>Presença</th><th>% geral</th></tr><tr><td>Ana Souza</td><td><select><option>Presente</option><option>Ausente</option></select></td><td>92%</td></tr><tr><td>Bruno Alves</td><td><select><option>Ausente</option><option>Presente</option></select></td><td>70%</td></tr></table><button class="p" data-msg="Frequência salva">Salvar chamada</button></div>
+<div class="caixa"><b>Aluno – minha frequência</b><br>EN-A1-01: 92% (mínimo exigido 75%)</div>
+</section>
+
+</main></div>
+<script src="app.js"></script></body></html>
